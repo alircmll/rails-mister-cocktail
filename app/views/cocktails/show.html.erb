@@ -13,14 +13,13 @@
           <div class="card" style="width: 18rem;">
             <div class="card-body">
               <% @cocktail.doses.each do |dose|  %>
-                <h6 class="card-subtitle mb-2 text-muted"><%= dose.description %></h6>
                 <%= link_to 'delete dose', dose_path(dose), method: :delete  %>
-              <% end %>
-              <% @cocktail.ingredients.each do |i|  %>
-                <p class="card-text"><%= i.name %></p>
-              <% end %>
+                  <%# @cocktail.ingredients.each do |i|  %>
+                  <p class="card-text"><%= dose.ingredient.name %></p>
+                  <h6 class="card-subtitle mb-2 text-muted"><%= dose.description %></h6>
+                <% end %>
+              <%# end %>
               <a href="#" class="card-link"><%= link_to 'add new doses',new_cocktail_dose_path(@cocktail) %></a>
-              <a href="#" class="card-link">Another link</a>
             </div>
           </div>
         </div>
