@@ -2,7 +2,7 @@ require 'json'
 require 'open-uri'
 Dose.destroy_all
 Cocktail.destroy_all
-Ingredient.destroy_all
+# Ingredient.destroy_all
 
 # def coktails(letter)
 #   url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?f=#{letter}"
@@ -18,35 +18,47 @@ Ingredient.destroy_all
 # end
 
 
-def fetch_cocktail(letter)
- cocktails_serialized = open("https://www.thecocktaildb.com/api/json/v1/1/search.php?f=" + letter).read
- cocktails = JSON.parse(cocktails_serialized)
- if !cocktails["drinks"].nil?
-   cocktails["drinks"].first(2).each do |cocktail|
-     c = Cocktail.new({name: cocktail["strDrink"]})
-     if c.valid?
-       c.save
-       (1..15).to_a.each do |number|
-         i = Ingredient.new({name: cocktail["strIngredient#{number.to_s}"]})
-         if i.valid? && !cocktail["strIngredient#{number.to_s}"].nil?
-           i.save
-           d = Dose.new({description: cocktail["strMeasure#{number.to_s}"]})
-           d[:cocktail_id] = c.id
-           d[:ingredient_id] = i.id
-           d.save
-         elsif i.errors.messages[:name] == ["has already been taken"]
-           i = Ingredient.find_by(name: cocktail["strIngredient#{number.to_s}"])
-           d = Dose.new({description: cocktail["strMeasure#{number.to_s}"]})
-           d[:cocktail_id] = c.id
-           d[:ingredient_id] = i.id
-           d.save
-         end
-       end
-     end
-   end
- end
-end
+# def fetch_cocktail(letter)
+#  cocktails_serialized = open("https://www.thecocktaildb.com/api/json/v1/1/search.php?f=" + letter).read
+#  cocktails = JSON.parse(cocktails_serialized)
+#  if !cocktails["drinks"].nil?
+#    cocktails["drinks"].first().each do |cocktail|
+#      c = Cocktail.new({name: cocktail["strDrink"]})
+#      if c.valid?
+#        c.save
+#        (1..15).to_a.each do |number|
+#          i = Ingredient.new({name: cocktail["strIngredient#{number.to_s}"]})
+#          if i.valid? && !cocktail["strIngredient#{number.to_s}"].nil?
+#            i.save
+#            d = Dose.new({description: cocktail["strMeasure#{number.to_s}"]})
+#            d[:cocktail_id] = c.id
+#            d[:ingredient_id] = i.id
+#            d.save
+#          elsif i.errors.messages[:name] == ["has already been taken"]
+#            i = Ingredient.find_by(name: cocktail["strIngredient#{number.to_s}"])
+#            d = Dose.new({description: cocktail["strMeasure#{number.to_s}"]})
+#            d[:cocktail_id] = c.id
+#            d[:ingredient_id] = i.id
+#            d.save
+#          end
+#        end
+#      end
+#    end
+#  end
+# end
 
-('a'..'z').to_a.each do |letter|
-  fetch_cocktail(letter)
+# ('a'..'z').to_a.each do |letter|
+#   fetch_cocktail(letter)
+# end
+
+
+
+Ingredient.destroy_all
+url = "https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list"
+user_serialized = open(url).read
+user = JSON.parse(user_serialized)
+user.each do |x|
+  x[1].each do |xx|
+    Ingredient.create(name: "#{xx["strIngredient1"]}")
+  end
 end

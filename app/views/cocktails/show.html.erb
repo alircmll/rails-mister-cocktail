@@ -4,7 +4,9 @@
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-
+   <span class="navbar-text">
+      I Love Cocktails
+    </span>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
@@ -34,13 +36,15 @@
 </div>
 <div class=" d-flex justify-content-around">
   <div class="col-4">
-    <div class="form-group ">
-      <h3>Personnalize: </h3>
-        <%= simple_form_for [@cocktail, @dose] do |f| %>
-        <%= f.input :description %>
-        <%= f.association :ingredient %>
-        <%= f.button :submit, 'Add', class:'btn btn-primary btn-sm w-100px' %>
-      <% end %>
+    <h3>Personnalize: </h3>
+    <div class="card rounded mb-4">
+      <div class="form-group border-light p-4">
+          <%= simple_form_for [@cocktail, @dose] do |f| %>
+          <%= f.input :description %>
+          <%= f.association :ingredient %>
+          <%= f.button :submit, 'Add', class:'btn btn-primary btn-sm w-100px' %>
+        <% end %>
+      </div>
     </div>
   </div>
   <div class="col-4">
