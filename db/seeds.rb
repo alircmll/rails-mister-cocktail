@@ -22,8 +22,8 @@ def fetch_cocktail(letter)
  cocktails_serialized = open("https://www.thecocktaildb.com/api/json/v1/1/search.php?f=" + letter).read
  cocktails = JSON.parse(cocktails_serialized)
  if !cocktails["drinks"].nil?
-   cocktails["drinks"].each do |cocktail|
-     c = Cocktail.new({name: cocktail["strDrink"]}) # retire image
+   cocktails["drinks"].first(2).each do |cocktail|
+     c = Cocktail.new({name: cocktail["strDrink"]})
      if c.valid?
        c.save
        (1..15).to_a.each do |number|

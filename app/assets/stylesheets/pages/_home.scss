@@ -21,9 +21,14 @@
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }
 
-
+.card-index {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
 
 .card-category {
+  box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
   background-size: cover;
   background-position: center;
   height: 180px;
@@ -36,4 +41,11 @@
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
   border-radius: 5px;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  opacity: 0.78;
+  transition: opacity 0.3s ease;
 }
+
+.card-category:hover {
+  opacity: 1;
+}
+

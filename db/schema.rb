@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2019_11_15_125637) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "photo"
+    t.string "photo", default: "https://images.unsplash.com/photo-1470337458703-46ad1756a187?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1049&q=80"
   end
 
   create_table "doses", force: :cascade do |t|

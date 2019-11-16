@@ -1,10 +1,66 @@
-<h1>Cocktails#index</h1>
 
-  <div class="container ">
-    <% @cocktails.each do |cocktail| %>
-      <div class="card-category m-3" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1455621481073-d5bc1c40e3cb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1183&q=80')">
-    <%= cocktail.name %>
+<div class="navbar sticky-top navbar-expand-sm navbar-light navbar-lewagon">
+  <a class="navbar-brand" href="#">
+    <img src="https://image.flaticon.com/icons/svg/2302/2302134.svg" /></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+    <span class="navbar-text">
+      I Love Cocktails
+    </span>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <%#= link_to "+", new_cocktail_path,  class:"nav-link ml-4" %>
+      </li>
+      <li class="nav-item">
+      </li>
+      <li class="nav-item dropdown">
+        <img class="avatar dropdown-toggle " id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="https://image.flaticon.com/icons/svg/148/148890.svg" />
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+          <%= link_to "New cocktail", new_cocktail_path,  class:'btn btn-primary dropdown-item' %>
+          <%#= link_to "Don't like it 🗑️", cocktail_path(@cocktail), method: :delete , class:'btn btn-primary dropdown-item'%>
+        </div>
+      </li>
+    </ul>
   </div>
-      <%= link_to 'details',cocktail_path(cocktail), class: 'btn btn-primary d-flex w-70 justify-content-center btn-sm' %>
-    <% end %>
+</div>
+
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1482112048165-dd23f81c367d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80);">
+  <div class="container">
+    <h1>As simple as drinking</h1>
+    <p>Create and personnalize your cocktails!</p>
   </div>
+</div>
+
+<div class="container text-center mt-4">
+    <div class="container ">
+      <div class="row">
+        <% @cocktails.each do |cocktail| %>
+            <div class="col-4 mb-3 card-index">
+              <div class="card-category w-100" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= cl_image_path cocktail.photo, width: 250, height: 300, crop: :fill %>)">
+                <%= link_to cocktail_path(cocktail) do %>
+                <%= cocktail.name %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

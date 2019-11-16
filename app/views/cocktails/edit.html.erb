@@ -1,0 +1,36 @@
+
+
+<div class="navbar sticky-top navbar-expand-sm navbar-light navbar-lewagon">
+  <a class="navbar-brand" href="#">
+    <img src="https://image.flaticon.com/icons/svg/2302/2302134.svg" /></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+    <span class="navbar-text">
+      I Love Cocktails
+    </span>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <%#= link_to "+", new_cocktail_path,  class:"nav-link ml-4" %>
+      </li>
+      <li class="nav-item">
+      </li>
+      <li class="nav-item dropdown">
+        <img class="avatar dropdown-toggle " id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="https://image.flaticon.com/icons/svg/148/148890.svg" />
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+          <span class='btn btn-primary dropdown-item'>Coucou :)</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="container mt-4 ">
+  <%= simple_form_for(@cocktail) do |f| %>
+      <%= f.input :name %>
+      <%= f.input :photo, label: false %>
+      <%= f.button :submit, class:'btn btn-primary btn-sm w-100px'%>
+  <% end %>
+</div>
+
